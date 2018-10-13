@@ -7,6 +7,8 @@
 
 <script>
 import FilterComponent from './components/filter.vue';
+import Dataset from './dataset.js';
+
 export default {
   name: "app",
   data() {
