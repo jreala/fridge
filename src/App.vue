@@ -1,13 +1,12 @@
 <template>
     <div>
         <h1>{{message}}</h1>
-        <date-picker-component hintText="Start Date Tip"></date-picker-component>
-        <date-picker-component hintText="End Date"></date-picker-component>
+        <filter-component></filter-component>
     </div>
 </template>
 
 <script>
-import DatePickerComponent from "./components/datePicker.vue";
+import FilterComponent from './components/filter.vue';
 export default {
   name: "app",
   data() {
@@ -16,7 +15,7 @@ export default {
     };
   },
   components: {
-    DatePickerComponent
+    FilterComponent
   }
 };
 </script>
