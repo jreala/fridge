@@ -17,4 +17,4 @@ class Dataset {
     }
 }
 
-module.exports = Dataset;
+export default Dataset;

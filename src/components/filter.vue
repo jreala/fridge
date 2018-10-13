@@ -2,30 +2,30 @@
     <b-container fluid>
         <b-form-group>
             <b-row>
-                <label-component label='Name'></label-component>
-                <input-receiver-component type='text'></input-receiver-component>
-                <label-component label='Type'></label-component>
-                <input-receiver-component type='text'></input-receiver-component>
+                <label-column-component label='Name'></label-column-component>
+                <input-receiver-column-component type='text'></input-receiver-column-component>
+                <label-column-component label='Type'></label-column-component>
+                <input-receiver-column-component type='text'></input-receiver-column-component>
             </b-row>
             <b-row>
-                <label-component label='Store'></label-component>
-                <input-receiver-component type='text'></input-receiver-component>
-                <label-component label='Quantity'></label-component>
-                <input-receiver-component type='number'></input-receiver-component>
+                <label-column-component label='Store'></label-column-component>
+                <input-receiver-column-component type='text'></input-receiver-column-component>
+                <label-column-component label='Quantity'></label-column-component>
+                <input-receiver-column-component type='number'></input-receiver-column-component>
             </b-row>
             <b-row>
-                <label-component label='Purchase Date'></label-component>
-                <input-receiver-component type='date'></input-receiver-component>
-                <label-component label='Expiration Date'></label-component>
-                <input-receiver-component type='date'></input-receiver-component>
+                <label-column-component label='Purchase Date'></label-column-component>
+                <input-receiver-column-component type='date'></input-receiver-column-component>
+                <label-column-component label='Expiration Date'></label-column-component>
+                <input-receiver-column-component type='date'></input-receiver-column-component>
             </b-row>
         </b-form-group>
     </b-container>
 </template>
 
 <script>
-import LabelComponent from "./label.vue";
-import InputReceiverComponent from "./inputReceiver.vue";
+import LabelColumnComponent from "./labelColumn.vue";
+import InputReceiverColumnComponent from "./inputReceiverColumn.vue";
 export default {
   data() {
     return {
@@ -36,8 +36,8 @@ export default {
     };
   },
   components: {
-    LabelComponent,
-    InputReceiverComponent
+    LabelColumnComponent,
+    InputReceiverColumnComponent
   }
 };
 </script>
