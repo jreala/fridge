@@ -1,14 +1,16 @@
 <template>
     <b-container fluid>
-        <b-table striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
-        <b-row>
-            <b-col>
-                <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage"></b-pagination>
-            </b-col>
-            <b-col cols="3">
-                <jump-to @page-changed="onPageChanged" v-bind:currentPage="currentPage"></jump-to>
-            </b-col>
-        </b-row>
+        <b-card bg-variant="light">
+            <b-table caption="Quantity of Food By Group Purchased" caption-top striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
+            <b-row>
+                <b-col>
+                    <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage"></b-pagination>
+                </b-col>
+                <b-col cols="3">
+                    <jump-to @page-changed="onPageChanged" v-bind:currentPage="currentPage"></jump-to>
+                </b-col>
+            </b-row>
+        </b-card>
     </b-container>
 </template>
 
@@ -23,7 +25,7 @@ const isNil = require("lodash/isNil");
 export default {
   data() {
     return {
-      items: Dataset.get(),
+      items: Dataset.getQuantityByDate(),
       currentPage: 1,
       perPage: 10,
       filter: null
@@ -41,6 +43,3 @@ export default {
   }
 };
 </script>
-
-<style>
-</style>
