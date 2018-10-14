@@ -1,12 +1,14 @@
 <template>
     <b-col :cols="cols">
-        <b-form-input v-model.trim='input' :type='type'></b-form-input>
+        <b-input-group :prepend='label'>
+          <b-form-input v-model.trim='input' :type='type'></b-form-input>
+        </b-input-group>
     </b-col>
 </template>
 
 <script>
 export default {
-  props: ['type', 'cols'],
+  props: ['label', 'type', 'cols'],
   data() {
     return {
       input: ''
