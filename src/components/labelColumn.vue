@@ -1,12 +1,12 @@
 <template>
-    <b-col cols='2'>
+    <b-col :cols="cols">
         <label>{{ label }}</label>
     </b-col>
 </template>
 
 <script>
 export default {
-  props: ["label"]
+  props: ["label", "cols"]
 };
 </script>
 

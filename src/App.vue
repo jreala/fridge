@@ -2,12 +2,13 @@
     <div>
         <h1>{{message}}</h1>
         <filter-component></filter-component>
+        <table-component></table-component>
     </div>
 </template>
 
 <script>
 import FilterComponent from './components/filter.vue';
-import Dataset from './js/dataset.js';
+import TableComponent from './components/table.vue';
 
 export default {
   name: "app",
@@ -17,7 +18,8 @@ export default {
     };
   },
   components: {
-    FilterComponent
+    FilterComponent,
+    TableComponent
   }
 };
 </script>
