@@ -1,5 +1,5 @@
 <template>
-    <b-form-group horizontal label="Jump To">
+    <b-input-group prepend="Jump To Page...">
         <b-form-input 
             type="number" 
             v-on:input="$emit('page-changed', page)" 
@@ -7,7 +7,7 @@
             placeholder='Page...'
         >
         </b-form-input>
-    </b-form-group>
+    </b-input-group>
 </template>
 
 <script>
