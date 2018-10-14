@@ -1,12 +1,18 @@
 <template>
     <div>
-        <h1>{{message}}</h1>
+        <header-component header="Big Fridge" blurb="Interview Project by Jason Eala"></header-component>
         <filter-component></filter-component>
+        <br/>
+        <table-component></table-component>
+        <br/>
+        <table-component></table-component>
+        <br/>
         <table-component></table-component>
     </div>
 </template>
 
 <script>
+import HeaderComponent from './components/header.vue';
 import FilterComponent from './components/filter.vue';
 import TableComponent from './components/table.vue';
 
@@ -18,6 +24,7 @@ export default {
     };
   },
   components: {
+    HeaderComponent,
     FilterComponent,
     TableComponent
   }
