@@ -1,4 +1,11 @@
-const _ = { once: require('lodash/once'), concat: require('lodash/concat') };
+const _ = {
+    once: require('lodash/once'),
+    concat: require('lodash/concat'),
+    isNil: require('lodash/isNil'),
+    values: require('lodash/values'),
+    omit: require('lodash/omit'),
+    set: require('lodash/set')
+};
 
 class Dataset {
     static get() {
@@ -16,6 +23,25 @@ class Dataset {
                 require('../data/data-9.json'),
             )
         )();
+    }
+
+    static getQuantityByDate() {
+        return _.once(() => {
+            const result = {};
+
+            this.get().forEach(item => {
+                if (_.isNil(result[item.name])) {
+                    result[`${item.name}-${item.purchaseDate.substring(0, 10)}`] = _.omit(
+                        _.set(item, 'purchaseDate', item.purchaseDate.substring(0, 10)),
+                        ['expirationDate']
+                    );
+                }
+
+                result[`${item.name}-${item.purchaseDate.substring(0, 10)}`].quantity += item.quantity;
+            });
+
+            return _.values(result);
+        })();
     }
 
     static getSample() {
