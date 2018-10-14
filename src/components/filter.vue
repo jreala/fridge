@@ -1,25 +1,21 @@
 <template>
     <b-container fluid>
-        <b-form-group>
-            <b-row>
-                <label-column-component label='Name' cols="2"></label-column-component>
-                <input-receiver-column-component type='text'></input-receiver-column-component>
-                <label-column-component label='Type' cols="2"></label-column-component>
-                <input-receiver-column-component type='text'></input-receiver-column-component>
-            </b-row>
-            <b-row>
-                <label-column-component label='Store' cols="2"></label-column-component>
-                <input-receiver-column-component type='text'></input-receiver-column-component>
-                <label-column-component label='Quantity' cols="2"></label-column-component>
-                <input-receiver-column-component type='number'></input-receiver-column-component>
-            </b-row>
-            <b-row>
-                <label-column-component label='Purchase Date' cols="2"></label-column-component>
-                <input-receiver-column-component type='date'></input-receiver-column-component>
-                <label-column-component label='Expiration Date' cols="2"></label-column-component>
-                <input-receiver-column-component type='date'></input-receiver-column-component>
-            </b-row>
-        </b-form-group>
+        <b-card bg-variant="light">
+            <b-form-group label='Filters' label-size='lg'>
+                <b-row>
+                    <input-receiver-column-component label='Name' type='text'></input-receiver-column-component>
+                    <input-receiver-column-component label='Type' type='text'></input-receiver-column-component>
+                </b-row>
+                <b-row>
+                    <input-receiver-column-component label='Store' type='text'></input-receiver-column-component>
+                    <input-receiver-column-component label='Quantity' type='number'></input-receiver-column-component>
+                </b-row>
+                <b-row>
+                    <input-receiver-column-component label='Purchase Date' type='date'></input-receiver-column-component>
+                    <input-receiver-column-component label='Expiration Date' type='date'></input-receiver-column-component>
+                </b-row>
+            </b-form-group>
+        </b-card>
     </b-container>
 </template>
 
