@@ -1,7 +1,7 @@
 <template>
     <b-container fluid>
         <b-card bg-variant="light">
-            <b-table caption="Quantity of Food By Group Purchased" caption-top striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
+            <b-table :caption="caption" caption-top striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
             <b-row>
                 <b-col>
                     <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage"></b-pagination>
@@ -23,9 +23,11 @@ import JumpTo from "./jumpTo.vue";
 const isNil = require("lodash/isNil");
 
 export default {
+  props: ['dataset', 'caption'],
+
   data() {
     return {
-      items: Dataset.getQuantityByDate(),
+      items: this.dataset,
       currentPage: 1,
       perPage: 10,
       filter: null
@@ -37,9 +39,9 @@ export default {
     JumpTo
   },
   methods: {
-      onPageChanged: function(page) {
-          this.currentPage = page;
-      }
+    onPageChanged: function(page) {
+      this.currentPage = page;
+    }
   }
 };
 </script>
