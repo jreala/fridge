@@ -1,7 +1,7 @@
 <template>
     <b-container fluid>
         <b-card bg-variant="light">
-            <b-table :caption="caption" caption-top striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
+            <b-table @filtered="onFiltered" :filter="filter" :caption="caption" caption-top striped hover :items="items" :per-page="perPage" :current-page="currentPage"></b-table>
             <b-row>
                 <b-col>
                     <b-pagination :total-rows="items.length" :per-page="perPage" v-model="currentPage"></b-pagination>
@@ -39,8 +39,15 @@ export default {
     JumpTo
   },
   methods: {
+    filterData: function(item) {
+      item.name.includes(this.filter);
+    },
     onPageChanged: function(page) {
       this.currentPage = page;
+    },
+    onFiltered: function(filteredItems) {
+      console.log('on filtered');
+      this.currentPage = 1;
     }
   }
 };

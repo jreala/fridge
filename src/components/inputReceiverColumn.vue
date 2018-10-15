@@ -1,24 +1,24 @@
 <template>
     <b-col :cols="cols">
         <b-input-group :prepend='label'>
-          <b-form-input v-model.trim='input' :type='type' @input="inputChanged"></b-form-input>
+          <b-form-input v-model.trim='input' :type='type' :input="$emit('input-updated', { from: label, data: input })"></b-form-input>
         </b-input-group>
     </b-col>
 </template>
 
 <script>
-import EventBus from '../js/eventBus';
+import EventBus from "../js/eventBus";
 
 export default {
-  props: ['label', 'type', 'cols'],
+  props: ["label", "type", "cols"],
   data() {
     return {
-      input: ''
-    }
+      input: ""
+    };
   },
   methods: {
     inputChanged() {
-      EventBus.$emit(this.label, this.input)
+      EventBus.$emit("filter", { name: this.label, input: this.input });
     }
   }
 };

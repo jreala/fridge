@@ -3,18 +3,19 @@
         <b-card bg-variant="light">
             <b-form-group label='Filters' label-size='lg'>
                 <b-row>
-                    <input-receiver-column-component label='Name' type='text'></input-receiver-column-component>
-                    <input-receiver-column-component label='Type' type='text'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Name' type='text'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Type' type='text'></input-receiver-column-component>
                 </b-row>
                 <b-row>
-                    <input-receiver-column-component label='Store' type='text'></input-receiver-column-component>
-                    <input-receiver-column-component label='Quantity' type='number'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Store' type='text'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Quantity' type='number'></input-receiver-column-component>
                 </b-row>
                 <b-row>
-                    <input-receiver-column-component label='Purchase Date' type='date'></input-receiver-column-component>
-                    <input-receiver-column-component label='Expiration Date' type='date'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Purchase Date' type='date'></input-receiver-column-component>
+                    <input-receiver-column-component @input-updated="onUpdateInfo" label='Expiration Date' type='date'></input-receiver-column-component>
                 </b-row>
             </b-form-group>
+            <b-button type="submit" variant="primary" @click="onClick">Submit</b-button>
         </b-card>
     </b-container>
 </template>
@@ -22,18 +23,24 @@
 <script>
 import LabelColumnComponent from "./labelColumn.vue";
 import InputReceiverColumnComponent from "./inputReceiverColumn.vue";
+
+const DataToFilter = {};
+
 export default {
-  data() {
-    return {
-      name: "",
-      type: "",
-      store: "",
-      quantity: ""
-    };
-  },
   components: {
     LabelColumnComponent,
     InputReceiverColumnComponent
+  },
+  methods: {
+    onClick() {
+      console.log("HELLOOOOO");
+      this.$emit('submit-data', DataToFilter);
+    },
+    onUpdateInfo(data) {
+      console.log(`Received update from ${data.from} with value ${data.data}`);
+      DataToFilter[data.from] = data;
+      console.log(DataToFilter);
+    }
   }
 };
 </script>

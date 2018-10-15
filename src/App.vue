@@ -1,7 +1,7 @@
 <template>
     <div>
         <header-component header="Big Fridge" blurb="Interview Project by Jason Eala"></header-component>
-        <filter-component></filter-component>
+        <filter-component @submit-data="onSubmit"></filter-component>
         <br/>
         <table-component caption="Quantity By Purchase Date" :dataset="quantityByDate"></table-component>
         <br/>
@@ -18,50 +18,51 @@ import FilterComponent from "./components/filter.vue";
 import TableComponent from "./components/table.vue";
 import Dataset from "./js/dataset";
 import EventBus from "./js/eventBus";
+const _ = { isNil: require("lodash/isNil"), filter: require("lodash/filter") };
 
-EventBus.$on('Name', (data) => {
-  console.log(data);
-});
+const filterBy = {};
 
-EventBus.$on('Type', (data) => {
-  console.log(data);
-});
-
-EventBus.$on('Store', (data) => {
-  console.log(data);
-});
-
-EventBus.$on('Quantity', (data) => {
-  console.log(data);
-});
-
-EventBus.$on('Purchase Date', (data) => {
-  console.log(data);
-
-});
-
-EventBus.$on('Expiration Date', (data) => {
-  console.log(data);
-});
+const componentData = {
+  allData: Dataset.get(),
+  quantityByDate: Dataset.getQuantityByDate(),
+  purchasedAfterExpiration: Dataset.getPurchasedAfterExpiration()
+};
 
 export default {
   name: "app",
-  data() {
-    return {
-      message: "Big Fridge",
-      allData: Dataset.get(),
-      quantityByDate: Dataset.getQuantityByDate(),
-      purchasedAfterExpiration: Dataset.getPurchasedAfterExpiration()
-    };
-  },
   components: {
     HeaderComponent,
     FilterComponent,
     TableComponent
   },
+  data: () => componentData,
+  mounted() {
+    const self = this;
+    EventBus.$on("filter", data => {
+      console.log(data.name, data.input);
+      filterBy[data.name] = data;
+      componentData.allData = Dataset.get().filter((item) => item.name.toLowerCase().includes(data.input.toLowerCase()));
+    });
+  },
+  watch: {
+    allData: val => {
+      console.log("hit me baby");
+      console.log(componentData.allData.length)
+      return componentData.allData;
+    },
+    quantityByDate: val => {
+      console.log("quanityt data");
+      return this.quantityByDate;
+    },
+    purchasedAfterExpiration: val => {
+      console.log("purchased data");
+      return this.purchasedAfterExpiration;
+    }
+  },
   methods: {
-    onPageChanged: function(page) {
-      console.log('from the main page')
+    onSubmit: function(data) {
+      console.log('From On Submit');
+      console.log(data);
     }
   }
 };
