@@ -13,7 +13,7 @@ const _ = {
 class Dataset {
 
     static get() {
-        return _.map(
+        return _.once(() =>_.map(
             _.concat(
                 require('../data/data-0.json'),
                 require('../data/data-1.json'),
@@ -30,9 +30,11 @@ class Dataset {
                 item.expirationDate = moment(item.expirationDate).format("YYYY-MM-DD");
                 return item;
             })
+        )();
     }
 
     static getQuantityByDate() {
+        return _.once(() => {
             const result = {};
 
             this.get().forEach(item => {
@@ -44,10 +46,11 @@ class Dataset {
             });
 
             return _.values(result);
+        })();
     }
 
     static getPurchasedAfterExpiration() {
-        return _.filter(this.get(), item => moment(item.expirationDate).isBefore(item.purchaseDate));
+        return _.once(() => _.filter(this.get(), item => moment(item.expirationDate).isBefore(item.purchaseDate)))();
     }
 
 }

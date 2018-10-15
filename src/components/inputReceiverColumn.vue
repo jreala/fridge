@@ -15,11 +15,6 @@ export default {
     return {
       input: ""
     };
-  },
-  methods: {
-    inputChanged() {
-      EventBus.$emit("filter", { name: this.label, input: this.input });
-    }
   }
 };
 </script>

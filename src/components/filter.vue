@@ -33,13 +33,10 @@ export default {
   },
   methods: {
     onClick() {
-      console.log("HELLOOOOO");
       this.$emit('submit-data', DataToFilter);
     },
     onUpdateInfo(data) {
-      console.log(`Received update from ${data.from} with value ${data.data}`);
       DataToFilter[data.from] = data;
-      console.log(DataToFilter);
     }
   }
 };
