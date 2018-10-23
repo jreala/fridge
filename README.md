@@ -1,5 +1,4 @@
 # fridge
-Interview project
 
 # Tasks
 ## All Fields Should Be Filterable
